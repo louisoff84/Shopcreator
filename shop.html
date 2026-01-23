@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Boutique | Groot Edit</title>
+    <style>
+        body { background: #0f0f0f; color: white; font-family: sans-serif; margin: 0; }
+        nav { padding: 20px; background: #1a1a1a; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        .container { max-width: 1000px; margin: auto; padding: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .item { background: #1a1a1a; border: 1px solid #00d4ff; padding: 20px; border-radius: 15px; text-align: center; }
+        .price { color: #00ff88; font-size: 1.5rem; margin: 15px 0; }
+        .old-price { text-decoration: line-through; color: #888; font-size: 0.8em; }
+        .buy-btn { background: #00d4ff; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; display: block; }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html">Retour Accueil</a></nav>
+    <div class="container">
+        <h1>Nos Services</h1>
+        <div class="grid">
+            <div class="item">
+                <h3>Montage Short</h3>
+                <div class="price"><span class="old-price">10€</span> 0€</div>
+                <p>Format 9:16 idéal TikTok/Reels.</p>
+                <a href="buy.html?item=Short" class="buy-btn">Prendre gratuitement</a>
+            </div>
+            <div class="item">
+                <h3>Miniature YT</h3>
+                <div class="price"><span class="old-price">5€</span> 0€</div>
+                <p>Haute qualité, style au choix.</p>
+                <a href="buy.html?item=Miniature" class="buy-btn">Prendre gratuitement</a>
+            </div>
+            <div class="item">
+                <h3>Montage Complet</h3>
+                <div class="price"><span class="old-price">40€</span> 0€</div>
+                <p>Vidéo de 10 min + Étalonnage.</p>
+                <a href="buy.html?item=Montage-Complet" class="buy-btn">Prendre gratuitement</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
