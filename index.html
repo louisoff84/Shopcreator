@@ -2,36 +2,179 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Groot Edit | Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groot Edit | Portfolio & Montage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
     <style>
-        body { background: #0f0f0f; color: white; font-family: sans-serif; text-align: center; margin: 0; }
-        nav { padding: 20px; background: #1a1a1a; border-bottom: 2px solid #00d4ff; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        .hero { padding: 100px 20px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1200x400'); background-size: cover; }
-        .btn { background: #00d4ff; color: black; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 20px; }
-        .portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 40px; }
-        .work { background: #1a1a1a; padding: 10px; border-radius: 10px; border: 1px solid #333; }
+        :root {
+            --primary: #00d4ff;
+            --bg: #050505;
+            --card-bg: #111;
+            --text: #ffffff;
+            --accent: #00ff88;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Barre de Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; color: var(--primary); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Section Hero */
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #003344 0%, var(--bg) 70%);
+        }
+
+        header h1 { font-size: 4rem; margin: 0; letter-spacing: -2px; }
+        header p { font-size: 1.2rem; color: #888; max-width: 600px; margin: 20px 0; }
+
+        .cta-main {
+            background: var(--primary);
+            color: black;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        .cta-main:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--primary); }
+
+        /* Section Portfolio / Réalisations */
+        .portfolio { padding: 80px 8%; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 250px;
+            gap: 20px;
+        }
+
+        .bento-item {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid #222;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s;
+        }
+
+        .bento-item:hover { border-color: var(--primary); transform: translateY(-5px); }
+        
+        /* Simuler une vidéo/image */
+        .bento-item i { font-size: 4rem; color: #222; transition: 0.3s; }
+        .bento-item:hover i { color: var(--primary); }
+
+        .large { grid-column: span 2; }
+        .tall { grid-row: span 2; }
+
+        .bento-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.6);
+            padding: 5px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #444;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+            .large, .tall { grid-column: span 1; grid-row: span 1; }
+        }
     </style>
 </head>
 <body>
+
     <nav>
-        <a href="index.html">ACCUEIL</a>
-        <a href="shop.html">BOUTIQUE</a>
+        <div class="logo">GROOT EDIT</div>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="shop.html">Boutique (0€)</a>
+        </div>
     </nav>
 
-    <div class="hero">
-        <h1>TRANSFORME TES VIDÉOS</h1>
-        <p>Montage professionnel, sous-titres stylés et miniatures qui cliquent.</p>
-        <a href="shop.html" class="btn">VOIR LES OFFRES (0€)</a>
-    </div>
+    <header>
+        <h1>L'art du montage,<br><span style="color: var(--primary);">le prix en moins.</span></h1>
+        <p>Je donne vie à vos projets vidéo avec un style percutant et des miniatures qui attirent l'œil. Tout est gratuit pour mon portfolio.</p>
+        <a href="shop.html" class="cta-main">Voir mes offres</a>
+    </header>
 
-    <h2>Mes Réalisations</h2>
-    <div class="portfolio">
-        <div class="work"><i class="fas fa-play-circle fa-3x"></i><p>Projet Gaming #1</p></div>
-        <div class="work"><i class="fas fa-play-circle fa-3x"></i><p>Vlog Voyage</p></div>
-        <div class="work"><i class="fas fa-play-circle fa-3x"></i><p>Short Dynamique</p></div>
-    </div>
+    <section class="portfolio">
+        <div class="section-title">
+            <h2>Mes Réalisations</h2>
+            <p style="color: #666;">Cliquez sur la boutique pour commander le même style de projet</p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-item large">
+                <i class="fas fa-play"></i>
+                <div class="bento-info">Vlog Voyage - Color Grade</div>
+            </div>
+            <div class="bento-item tall">
+                <i class="fas fa-bolt"></i>
+                <div class="bento-info">Short Gaming - Fast Edit</div>
+            </div>
+            <div class="bento-item">
+                <i class="fas fa-image"></i>
+                <div class="bento-info">Miniature MrBeast Style</div>
+            </div>
+            <div class="bento-item">
+                <i class="fas fa-film"></i>
+                <div class="bento-info">Publicité Produit</div>
+            </div>
+            <div class="bento-item">
+                <i class="fas fa-music"></i>
+                <div class="bento-info">Clip Musical</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Groot Edit - Aucun droit réservé (Projet Open Source)</p>
+    </footer>
+
 </body>
 </html>
-
