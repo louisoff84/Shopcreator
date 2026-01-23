@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation | Groot Edit</title>
+    <style>
+        body { background: #0f0f0f; color: white; font-family: sans-serif; text-align: center; padding: 100px 20px; }
+        .box { background: #1a1a1a; padding: 40px; border-radius: 20px; display: inline-block; border: 1px solid #00ff88; }
+        .total { font-size: 2rem; color: #00ff88; margin: 20px 0; }
+        .discord-btn { background: #5865F2; color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Récapitulatif de la commande</h2>
+        <p>Produit sélectionné : <strong id="product-name">...</strong></p>
+        <div class="total">TOTAL : 0.00€</div>
+        <p>Pour finaliser et m'envoyer ton projet, rejoins-moi sur Discord :</p>
+        <a href="TON_LIEN_DISCORD_ICI" class="discord-btn"><i class="fab fa-discord"></i> Rejoindre le Discord</a>
+        <br><br>
+        <a href="shop.html" style="color: #888;">Annuler</a>
+    </div>
+
+    <script>
+        // Ce petit script récupère le nom du produit dans l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const item = urlParams.get('item');
+        if (item) {
+            document.getElementById('product-name').innerText = item.replace('-', ' ');
+        }
+    </script>
+</body>
+</html>
