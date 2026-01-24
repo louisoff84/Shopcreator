@@ -2,25 +2,24 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Louis Editing | Montage Vidéo Professionnel</title>
+    <title>Louis Editing | Montage Vidéo</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-950 text-white font-sans">
-    <nav class="p-6 flex justify-between items-center bg-black/40 backdrop-blur-md sticky top-0 z-50">
-        <h1 class="text-2xl font-black text-white tracking-tighter">LOUIS <span class="text-purple-600">EDITING</span></h1>
-        <div class="space-x-8 font-medium">
-            <a href="shop" class="hover:text-purple-400 transition">Services</a>
-            <a href="dashboard" class="bg-purple-600 px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow-lg shadow-purple-900/20">Espace Client</a>
+<body class="bg-gray-950 text-white font-sans overflow-x-hidden">
+    <div class="glow-bg"></div> <nav class="p-6 flex justify-between items-center fixed w-full z-50 backdrop-blur-md border-b border-white/5">
+        <h1 class="text-2xl font-black italic tracking-tighter">LOUIS <span class="text-purple-600">EDITING</span></h1>
+        <div class="space-x-8 font-bold text-sm uppercase">
+            <a href="shop" class="hover:text-purple-500 transition">Services</a>
+            <a href="dashboard" class="bg-white text-black px-6 py-2 rounded-full hover:bg-purple-600 hover:text-white transition">Dashboard</a>
         </div>
     </nav>
 
-    <header class="h-[85vh] flex flex-col justify-center items-center text-center px-4">
-        <div class="bg-purple-500/10 text-purple-400 border border-purple-500/20 px-4 py-1 rounded-full text-xs font-bold mb-8 uppercase tracking-widest">Offre Spéciale : 0€ l'unité</div>
-        <h2 class="text-6xl md:text-8xl font-black mb-6 leading-none">VOS RUSHES,<br><span class="text-purple-600 italic">MON TALENT.</span></h2>
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-12">Je sublime vos vidéos gaming et contenus créatifs gratuitement pour booster mon portfolio.</p>
-        <div class="flex gap-4">
-            <a href="shop" class="bg-white text-black px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-200 transition">Commander un montage</a>
-        </div>
+    <header class="h-screen flex flex-col justify-center items-center text-center px-4 relative">
+        <div class="fade-in bg-purple-600/20 text-purple-400 border border-purple-600/30 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6">Start now for 0€</div>
+        <h2 class="fade-in-1 text-7xl md:text-9xl font-black mb-6 leading-none italic">EDITION<br><span class="text-purple-600">LIMITÉE.</span></h2>
+        <p class="fade-in-2 text-gray-400 text-lg max-w-xl mb-12">Je monte tes vidéos gaming et tes shorts gratuitement pour lancer mon portfolio.</p>
+        <a href="shop" class="fade-in-3 btn-custom px-12 py-5 rounded-2xl font-black text-xl hover:scale-105 transition">LANCER UN PROJET</a>
     </header>
 </body>
 </html>
