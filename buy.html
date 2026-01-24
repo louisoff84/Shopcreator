@@ -2,84 +2,26 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Finaliser la commande | Groot Edit</title>
-    <style>
-        body { background: #0f0f0f; color: white; font-family: sans-serif; text-align: center; padding: 50px 20px; }
-        .box { background: #1a1a1a; padding: 30px; border-radius: 20px; display: inline-block; border: 1px solid #00d4ff; max-width: 400px; width: 100%; }
-        input, textarea { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #333; background: #000; color: white; }
-        .total { font-size: 1.8rem; color: #00ff88; margin: 15px 0; }
-        .btn-send { background: #00ff88; color: black; padding: 15px; width: 100%; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; }
-        .btn-send:hover { background: #white; box-shadow: 0 0 10px #00ff88; }
-    </style>
+    <title>Finaliser | Louis Editing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="box">
-        <h2>Ta Commande (0€)</h2>
-        <p>Produit : <strong id="product-name">Chargement...</strong></p>
+<body class="bg-gray-950 text-white flex items-center justify-center min-h-screen p-6">
+    <div class="bg-gray-900 p-10 rounded-3xl w-full max-w-md border border-gray-800">
+        <h2 class="text-2xl font-bold text-center mb-1">Détails du projet</h2>
+        <p id="product-display" class="text-purple-500 text-center font-bold text-xs uppercase tracking-tighter mb-8"></p>
         
-        <form id="orderForm">
-            <input type="text" id="username" placeholder="Ton pseudo (Discord ou YT)" required>
-            <textarea id="details" rows="4" placeholder="Décris ton projet (lien des rushs, style souhaité...)" required></textarea>
-            <div class="total">TOTAL : 0.00€</div>
-            <button type="submit" class="btn-send">ENVOYER LA COMMANDE</button>
+        <form id="order-form" class="space-y-5">
+            <div class="space-y-1">
+                <label class="text-xs font-bold text-gray-500 px-1">CONTACT (DISCORD / MAIL)</label>
+                <input type="text" id="username" required placeholder="Ex: Louis#1234" class="w-full bg-black border border-gray-800 p-4 rounded-xl focus:border-purple-600 outline-none transition">
+            </div>
+            <div class="space-y-1">
+                <label class="text-xs font-bold text-gray-500 px-1">LIEN DES RUSHES (DRIVE/WETRANSFER)</label>
+                <input type="url" id="rushs" required placeholder="https://..." class="w-full bg-black border border-gray-800 p-4 rounded-xl focus:border-purple-600 outline-none transition">
+            </div>
+            <button type="submit" class="w-full bg-purple-600 py-4 rounded-xl font-black text-lg hover:bg-purple-500 transition shadow-xl shadow-purple-900/30">LANCER LE MONTAGE</button>
         </form>
-        
-        <div id="status" style="margin-top: 20px;"></div>
     </div>
-
-    <script>
-        // Récupération du nom du produit via l'URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const itemName = urlParams.get('item') || "Non spécifié";
-        document.getElementById('product-name').innerText = itemName.replace(/-/g, ' ');
-
-        // Configuration du Webhook
-        const WEBHOOK_URL = "TON_URL_WEBHOOK_ICI"; 
-
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const details = document.getElementById('details').value;
-            const status = document.getElementById('status');
-
-            // Préparation du message pour Discord
-            const requestData = {
-                username: "Boutique Groot Edit",
-                embeds: [{
-                    title: "🛒 Nouvelle Commande Reçue !",
-                    color: 5814783, // Couleur bleue
-                    fields: [
-                        { name: "Produit", value: itemName, inline: true },
-                        { name: "Client", value: username, inline: true },
-                        { name: "Détails du projet", value: details }
-                    ],
-                    footer: { text: "Commande à 0€" },
-                    timestamp: new Date()
-                }]
-            };
-
-            // Envoi de la requête
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    status.innerHTML = "✅ Commande envoyée ! Je te recontacte vite.";
-                    status.style.color = "#00ff88";
-                    document.getElementById('orderForm').reset();
-                } else {
-                    status.innerHTML = "❌ Erreur lors de l'envoi.";
-                    status.style.color = "red";
-                }
-            })
-            .catch(error => {
-                status.innerHTML = "❌ Impossible de se connecter au serveur.";
-                status.style.color = "red";
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
