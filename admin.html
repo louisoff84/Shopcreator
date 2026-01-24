@@ -2,59 +2,41 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel | Groot Edit</title>
-    <style>
-        body { background: #1a1a1a; color: white; font-family: sans-serif; padding: 50px; }
-        .form-box { background: #222; padding: 20px; border-radius: 10px; max-width: 500px; margin-bottom: 30px; }
-        input, textarea { width: 95%; padding: 10px; margin: 10px 0; background: #000; color: white; border: 1px solid #444; }
-        button { background: #00ff88; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; }
-        .product-list { border-top: 1px solid #444; padding-top: 20px; }
-    </style>
+    <title>Espace Client | Louis Editing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Panel Gestionnaire de Packs</h1>
-    
-    <div class="form-box">
-        <h3>Ajouter un Pack</h3>
-        <input type="text" id="pName" placeholder="Nom du pack (ex: Montage YouTube)">
-        <input type="number" id="pPrice" placeholder="Ancien Prix (ex: 20)">
-        <textarea id="pDesc" placeholder="Description courte"></textarea>
-        <button onclick="addProduct()">Ajouter au Shop</button>
+<body class="bg-gray-950 text-white">
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-72 bg-black border-r border-gray-900 p-8 flex flex-col">
+            <h2 class="font-black text-2xl mb-12 tracking-tighter italic">LOUIS <span class="text-purple-600">E.</span></h2>
+            <nav class="space-y-3 flex-1">
+                <a href="shop" class="flex items-center gap-3 p-4 rounded-xl hover:bg-gray-900 transition"><span>🛒</span> Boutique</a>
+                <a href="dashboard" class="flex items-center gap-3 p-4 rounded-xl bg-purple-600/10 text-purple-500 font-bold border border-purple-500/20"><span>📋</span> Mes Projets</a>
+            </nav>
+            <div class="text-[10px] text-gray-600 font-bold uppercase tracking-widest text-center mt-auto">Support: Louis Editing v1.0</div>
+        </aside>
+
+        <main class="flex-1 p-12 overflow-y-auto bg-gray-950">
+            <div class="flex justify-between items-center mb-10">
+                <h1 class="text-3xl font-black italic uppercase">Mes Commandes</h1>
+                <div id="notif-badge" class="hidden bg-purple-600 text-[10px] px-3 py-1 rounded-full animate-pulse">NOUVELLE ACTIVITÉ</div>
+            </div>
+            
+            <div class="bg-gray-900 rounded-3xl border border-gray-800 overflow-hidden shadow-2xl">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-800/50 text-gray-500 text-[10px] font-black uppercase tracking-widest">
+                        <tr>
+                            <th class="p-6">Type de Montage</th>
+                            <th class="p-6">Statut de Production</th>
+                            <th class="p-6">Date de commande</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-list">
+                        </tbody>
+                </table>
+            </div>
+        </main>
     </div>
-
-    <div class="product-list" id="admin-list"></div>
-
-    <script>
-        function addProduct() {
-            const name = document.getElementById('pName').value;
-            const price = document.getElementById('pPrice').value;
-            const desc = document.getElementById('pDesc').value;
-
-            if(!name || !price) return alert("Remplis tout !");
-
-            let products = JSON.parse(localStorage.getItem('myProducts')) || [];
-            products.push({ name, price, desc });
-            localStorage.setItem('myProducts', JSON.stringify(products));
-            location.reload();
-        }
-
-        function deleteProduct(index) {
-            let products = JSON.parse(localStorage.getItem('myProducts'));
-            products.splice(index, 1);
-            localStorage.setItem('myProducts', JSON.stringify(products));
-            location.reload();
-        }
-
-        function display() {
-            const list = document.getElementById('admin-list');
-            let products = JSON.parse(localStorage.getItem('myProducts')) || [];
-            list.innerHTML = "<h3>Packs Actuels :</h3>" + products.map((p, i) => `
-                <div style="background:#333; padding:10px; margin:5px;">
-                    <strong>${p.name}</strong> - ${p.price}€ <button onclick="deleteProduct(${i})" style="background:red; color:white;">Supprimer</button>
-                </div>
-            `).join('');
-        }
-        display();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
