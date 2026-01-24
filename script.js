@@ -1,83 +1,64 @@
-// --- CONFIGURATION ---
-const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1464545987748958324/Q-GtYCzccW3q5LIVAMbBFwrvRkTpOGITpabd02cAfz9xZE5B_8IEtvUNlfa07xdSTKk7"; // <--- COLLE TON URL ICI
+const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1464545987748958324/Q-GtYCzccW3q5LIVAMbBFwrvRkTpOGITpabd02cAfz9xZE5B_8IEtvUNlfa07xdSTKk7";
 
-// --- GESTION DU NOM DU PRODUIT ---
-const urlParams = new URLSearchParams(window.location.search);
-const item = urlParams.get('item');
+// Détection du produit
+const params = new URLSearchParams(window.location.search);
+const item = params.get('item');
 const display = document.getElementById('product-display');
-
 if (display) {
-    if (item === 'gaming') display.innerText = "🎮 Montage Gaming Pro";
-    else if (item === 'shorts') display.innerText = "📱 Pack Shorts / TikTok";
-    else display.innerText = "✨ Commande Spéciale";
+    display.innerText = (item === 'gaming') ? "🎬 Gaming Impact" : "📱 Viral Short";
 }
 
-// --- ENVOI DE LA COMMANDE (VERS DISCORD + LOCALSTORAGE) ---
-const orderForm = document.getElementById('order-form');
-if (orderForm) {
-    orderForm.onsubmit = async (e) => {
+// Envoi de commande
+const form = document.getElementById('order-form');
+if (form) {
+    form.onsubmit = async (e) => {
         e.preventDefault();
-        
-        const username = document.getElementById('username').value;
-        const rushs = document.getElementById('rushs').value;
-        const productName = display.innerText;
+        const client = document.getElementById('username').value;
+        const link = document.getElementById('rushs').value;
 
-        const orderData = {
-            name: productName,
-            user: username,
-            rushs: rushs,
+        const data = {
+            service: display.innerText,
+            user: client,
+            rushs: link,
             date: new Date().toLocaleDateString('fr-FR'),
-            status: "🎬 En cours d'examen"
+            status: "EN ATTENTE"
         };
 
-        // 1. Sauvegarde locale pour le client
-        let orders = JSON.parse(localStorage.getItem('louisEditingOrders')) || [];
-        orders.unshift(orderData);
-        localStorage.setItem('louisEditingOrders', JSON.stringify(orders));
+        // Sauvegarde client
+        let orders = JSON.parse(localStorage.getItem('louisOrders')) || [];
+        orders.unshift(data);
+        localStorage.setItem('louisOrders', JSON.stringify(orders));
 
-        // 2. ENVOI VERS TON DISCORD (L'admin reçoit l'info !)
-        const discordMessage = {
-            username: "Louis Editing Bot",
-            embeds: [{
-                title: "🚀 Nouvelle Commande !",
-                color: 9442302, // Couleur violette
-                fields: [
-                    { name: "Client", value: username, inline: true },
-                    { name: "Service", value: productName, inline: true },
-                    { name: "Lien des Rushs", value: rushs }
-                ],
-                footer: { text: "Louis Editing - Système de commande" }
-            }]
-        };
+        // Envoi Discord
+        await fetch(DISCORD_WEBHOOK, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                embeds: [{
+                    title: "🚀 NOUVELLE COMMANDE",
+                    color: 9647871,
+                    fields: [
+                        { name: "Client", value: client, inline: true },
+                        { name: "Format", value: data.service, inline: true },
+                        { name: "Lien", value: link }
+                    ]
+                }]
+            })
+        });
 
-        try {
-            await fetch(DISCORD_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(discordMessage)
-            });
-            alert("Commande envoyée avec succès ! Louis va l'examiner.");
-            window.location.href = "dashboard";
-        } catch (err) {
-            alert("Erreur lors de l'envoi. Vérifie ta connexion.");
-        }
+        window.location.href = "dashboard";
     };
 }
 
-// --- AFFICHAGE DASHBOARD CLIENT ---
-const ordersList = document.getElementById('orders-list');
-if (ordersList) {
-    let orders = JSON.parse(localStorage.getItem('louisEditingOrders')) || [];
-    if (orders.length > 0) {
-        orders.forEach(order => {
-            ordersList.innerHTML += `
-                <tr class="border-t border-gray-800 hover:bg-gray-800/40 transition">
-                    <td class="p-6 font-bold text-white">${order.name}</td>
-                    <td class="p-6"><span class="bg-purple-500/10 text-purple-500 border border-purple-500/30 px-3 py-1 rounded-full text-[10px] font-black uppercase">${order.status}</span></td>
-                    <td class="p-6 text-gray-500 text-sm">${order.date}</td>
-                </tr>`;
-        });
-    } else {
-        ordersList.innerHTML = '<tr><td colspan="3" class="p-12 text-center text-gray-600 italic font-medium">Aucune commande. Louis attend tes rushes !</td></tr>';
-    }
+// Dashboard
+const list = document.getElementById('orders-list');
+if (list) {
+    let orders = JSON.parse(localStorage.getItem('louisOrders')) || [];
+    list.innerHTML = orders.map(o => `
+        <tr class="border-t border-white/5 transition hover:bg-white/[0.02]">
+            <td class="p-6 font-black text-[10px] tracking-widest text-purple-400 uppercase">${o.service}</td>
+            <td class="p-6"><span class="bg-white/10 text-[9px] px-3 py-1 rounded-full border border-white/10 font-black uppercase">En attente</span></td>
+            <td class="p-6 text-gray-500 text-xs">${o.date}</td>
+        </tr>
+    `).join('') || "<tr><td colspan='3' class='p-20 text-center text-gray-700 italic text-sm'>Aucun projet en cours.</td></tr>";
 }
