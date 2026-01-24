@@ -9,6 +9,7 @@ const form = document.getElementById('order-form');
 if (form) {
     form.onsubmit = async (e) => {
         e.preventDefault();
+        
         const data = {
             service: (item === 'gaming') ? "Gaming" : "Short",
             user: document.getElementById('username').value,
@@ -16,26 +17,28 @@ if (form) {
             date: new Date().toLocaleDateString('fr-FR')
         };
 
-        // Création du lien d'importation auto pour l'admin
-        const importLink = window.location.origin + "/admin.html?data=" + btoa(JSON.stringify(data));
+        // Génération du lien d'importation vers ton URL GitHub Pages
+        const importLink = "https://louisoff84.github.io/Shopcreator/admin?data=" + btoa(JSON.stringify(data));
 
         await fetch(DISCORD_WEBHOOK, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 embeds: [{
-                    title: "🚀 NOUVELLE COMMANDE",
+                    title: "🚀 NOUVELLE COMMANDE : LOUIS EDITING",
                     color: 9647871,
-                    description: `[CLIQUE ICI POUR AJOUTER AU PANEL ADMIN](${importLink})`,
+                    description: `📥 [CLIQUE ICI POUR IMPORTER DANS L'ADMIN](${importLink})`,
                     fields: [
-                        { name: "Client", value: data.user, inline: true },
-                        { name: "Format", value: data.service, inline: true }
-                    ]
+                        { name: "👤 Client", value: data.user, inline: true },
+                        { name: "🎬 Format", value: data.service, inline: true },
+                        { name: "🔗 Rushes", value: data.rushs }
+                    ],
+                    footer: { text: "Louis Editing Sync System" }
                 }]
             })
         });
 
-        alert("Envoyé !");
+        alert("Ta commande a été envoyée ! Je te contacte sur Discord.");
         window.location.href = "index.html";
     };
 }
