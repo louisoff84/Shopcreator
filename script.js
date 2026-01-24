@@ -1,5 +1,5 @@
 // --- CONFIGURATION ---
-const DISCORD_WEBHOOK_URL = "TON_URL_WEBHOOK_ICI"; // <--- COLLE TON URL ICI
+const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1464545987748958324/Q-GtYCzccW3q5LIVAMbBFwrvRkTpOGITpabd02cAfz9xZE5B_8IEtvUNlfa07xdSTKk7"; // <--- COLLE TON URL ICI
 
 // --- GESTION DU NOM DU PRODUIT ---
 const urlParams = new URLSearchParams(window.location.search);
