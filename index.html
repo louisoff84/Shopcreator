@@ -2,179 +2,25 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groot Edit | Portfolio & Montage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
-    <style>
-        :root {
-            --primary: #00d4ff;
-            --bg: #050505;
-            --card-bg: #111;
-            --text: #ffffff;
-            --accent: #00ff88;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            overflow-x: hidden;
-        }
-
-        /* Barre de Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #222;
-        }
-
-        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; color: var(--primary); }
-        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* Section Hero */
-        header {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #003344 0%, var(--bg) 70%);
-        }
-
-        header h1 { font-size: 4rem; margin: 0; letter-spacing: -2px; }
-        header p { font-size: 1.2rem; color: #888; max-width: 600px; margin: 20px 0; }
-
-        .cta-main {
-            background: var(--primary);
-            color: black;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: 0.3s;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-        .cta-main:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--primary); }
-
-        /* Section Portfolio / Réalisations */
-        .portfolio { padding: 80px 8%; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-size: 2.5rem; }
-        
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 250px;
-            gap: 20px;
-        }
-
-        .bento-item {
-            background: var(--card-bg);
-            border-radius: 20px;
-            border: 1px solid #222;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.4s;
-        }
-
-        .bento-item:hover { border-color: var(--primary); transform: translateY(-5px); }
-        
-        /* Simuler une vidéo/image */
-        .bento-item i { font-size: 4rem; color: #222; transition: 0.3s; }
-        .bento-item:hover i { color: var(--primary); }
-
-        .large { grid-column: span 2; }
-        .tall { grid-row: span 2; }
-
-        .bento-info {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0,0,0,0.6);
-            padding: 5px 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
-        footer {
-            padding: 50px;
-            text-align: center;
-            border-top: 1px solid #222;
-            color: #444;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
-            .large, .tall { grid-column: span 1; grid-row: span 1; }
-        }
-    </style>
+    <title>Louis Editing | Montage Vidéo Professionnel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-    <nav>
-        <div class="logo">GROOT EDIT</div>
-        <div class="nav-links">
-            <a href="index.html">Portfolio</a>
-            <a href="shop.html">Boutique (0€)</a>
+<body class="bg-gray-950 text-white font-sans">
+    <nav class="p-6 flex justify-between items-center bg-black/40 backdrop-blur-md sticky top-0 z-50">
+        <h1 class="text-2xl font-black text-white tracking-tighter">LOUIS <span class="text-purple-600">EDITING</span></h1>
+        <div class="space-x-8 font-medium">
+            <a href="shop" class="hover:text-purple-400 transition">Services</a>
+            <a href="dashboard" class="bg-purple-600 px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow-lg shadow-purple-900/20">Espace Client</a>
         </div>
     </nav>
 
-    <header>
-        <h1>L'art du montage,<br><span style="color: var(--primary);">le prix en moins.</span></h1>
-        <p>Je donne vie à vos projets vidéo avec un style percutant et des miniatures qui attirent l'œil. Tout est gratuit pour mon portfolio.</p>
-        <a href="shop.html" class="cta-main">Voir mes offres</a>
+    <header class="h-[85vh] flex flex-col justify-center items-center text-center px-4">
+        <div class="bg-purple-500/10 text-purple-400 border border-purple-500/20 px-4 py-1 rounded-full text-xs font-bold mb-8 uppercase tracking-widest">Offre Spéciale : 0€ l'unité</div>
+        <h2 class="text-6xl md:text-8xl font-black mb-6 leading-none">VOS RUSHES,<br><span class="text-purple-600 italic">MON TALENT.</span></h2>
+        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-12">Je sublime vos vidéos gaming et contenus créatifs gratuitement pour booster mon portfolio.</p>
+        <div class="flex gap-4">
+            <a href="shop" class="bg-white text-black px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-200 transition">Commander un montage</a>
+        </div>
     </header>
-
-    <section class="portfolio">
-        <div class="section-title">
-            <h2>Mes Réalisations</h2>
-            <p style="color: #666;">Cliquez sur la boutique pour commander le même style de projet</p>
-        </div>
-
-        <div class="bento-grid">
-            <div class="bento-item large">
-                <i class="fas fa-play"></i>
-                <div class="bento-info">Vlog Voyage - Color Grade</div>
-            </div>
-            <div class="bento-item tall">
-                <i class="fas fa-bolt"></i>
-                <div class="bento-info">Short Gaming - Fast Edit</div>
-            </div>
-            <div class="bento-item">
-                <i class="fas fa-image"></i>
-                <div class="bento-info">Miniature MrBeast Style</div>
-            </div>
-            <div class="bento-item">
-                <i class="fas fa-film"></i>
-                <div class="bento-info">Publicité Produit</div>
-            </div>
-            <div class="bento-item">
-                <i class="fas fa-music"></i>
-                <div class="bento-info">Clip Musical</div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Groot Edit - Aucun droit réservé (Projet Open Source)</p>
-    </footer>
-
 </body>
 </html>
