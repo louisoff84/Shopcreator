@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Téléchargement | Louis Editing</title>
+</head>
+<body>
+    <div style="text-align:center; margin-top:100px;">
+        <h1 id="title">Vérification...</h1>
+        <a id="btn" class="btn-primary" style="display:none; text-decoration:none;">Télécharger le fichier</a>
+    </div>
+
+    <script>
+        const t = new URLSearchParams(window.location.search).get('t');
+        if(t) {
+            try {
+                const data = JSON.parse(atob(t));
+                document.getElementById('title').innerText = "Votre Pack : " + data.n;
+                const b = document.getElementById('btn');
+                b.href = data.u;
+                b.style.display = "inline-block";
+            } catch(e) {
+                document.getElementById('title').innerText = "Lien corrompu ❌";
+            }
+        }
+    </script>
+</body>
+</html>
