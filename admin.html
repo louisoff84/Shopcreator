@@ -3,49 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Panel | Louis Editing</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
-<body class="bg-gray-950 text-white p-10">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-black italic mb-10">ADMIN <span class="text-purple-600">PANEL</span></h1>
-        <div class="bg-gray-900 rounded-3xl border border-white/5 overflow-hidden">
-            <table class="w-full text-left">
-                <thead class="bg-white/5 text-[10px] uppercase font-black">
-                    <tr>
-                        <th class="p-6">Projet</th>
-                        <th class="p-6">Client</th>
-                        <th class="p-6">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="admin-list"></tbody>
-            </table>
-        </div>
+<body>
+    <div class="admin-wrapper">
+        <nav class="sidebar">
+            <h2>Louis <span>Edit</span></h2>
+            <ul>
+                <li class="active">Générateur</li>
+                <li onclick="Auth.logout()">Déconnexion</li>
+            </ul>
+        </nav>
+        <main class="content">
+            <h1>Générateur de liens de téléchargement</h1>
+            <div class="card">
+                <input type="text" id="pName" placeholder="Nom du produit">
+                <input type="text" id="pUrl" placeholder="URL du fichier (Drive/Mega)">
+                <button onclick="createLink()" class="btn-primary">Générer le lien sécurisé</button>
+                
+                <div id="res" class="result" style="display:none;">
+                    <p>Lien client généré :</p>
+                    <input type="text" id="linkOutput" readonly>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <script>
-        // Récupération automatique depuis l'URL (via Discord)
-        const urlParams = new URLSearchParams(window.location.search);
-        const rawData = urlParams.get('data');
-
-        if (rawData) {
-            const decoded = JSON.parse(atob(rawData));
-            let orders = JSON.parse(localStorage.getItem('louis_admin')) || [];
-            orders.unshift(decoded);
-            localStorage.setItem('louis_admin', JSON.stringify(orders));
-            window.history.replaceState({}, document.title, "admin.html");
-        }
-
-        // Affichage
-        const list = document.getElementById('admin-list');
-        const orders = JSON.parse(localStorage.getItem('louis_admin')) || [];
-        list.innerHTML = orders.map(o => `
-            <tr class="border-t border-white/5">
-                <td class="p-6 font-bold text-sm">${o.service}</td>
-                <td class="p-6 text-purple-400 font-bold">${o.user}</td>
-                <td class="p-6"><a href="${o.rushs}" target="_blank" class="text-xs bg-white/5 px-4 py-2 rounded-full hover:bg-white/10 transition">Lien Rushes</a></td>
-            </tr>
-        `).join('') || "<tr><td colspan='3' class='p-10 text-center text-gray-600'>Aucune commande.</td></tr>";
-    </script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+    <script>Auth.check('admin');</script>
 </body>
 </html>
