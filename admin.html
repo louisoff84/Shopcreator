@@ -1,35 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Panel | Louis Editing</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/admin.css">
+    <title>Admin Panel</title>
 </head>
-<body>
-    <div class="admin-wrapper">
-        <nav class="sidebar">
-            <h2>Louis <span>Edit</span></h2>
-            <ul>
-                <li class="active">Générateur</li>
-                <li onclick="Auth.logout()">Déconnexion</li>
-            </ul>
-        </nav>
-        <main class="content">
-            <h1>Générateur de liens de téléchargement</h1>
-            <div class="card">
-                <input type="text" id="pName" placeholder="Nom du produit">
-                <input type="text" id="pUrl" placeholder="URL du fichier (Drive/Mega)">
-                <button onclick="createLink()" class="btn-primary">Générer le lien sécurisé</button>
-                
-                <div id="res" class="result" style="display:none;">
-                    <p>Lien client généré :</p>
-                    <input type="text" id="linkOutput" readonly>
-                </div>
-            </div>
-        </main>
-    </div>
-
+<body class="admin-layout">
+    <nav class="sidebar"><h2>ADMIN</h2><button onclick="Auth.logout()">Quitter</button></nav>
+    <main style="padding:40px">
+        <h1>Générateur de Liens</h1>
+        <div class="card">
+            <input type="text" id="pName" placeholder="Nom du Pack">
+            <input type="text" id="pUrl" placeholder="URL Drive/Mega">
+            <button onclick="createLink()" class="btn-primary">Générer le Token</button>
+            <input type="text" id="res" readonly style="margin-top:20px; display:none; border-color:var(--p)">
+        </div>
+    </main>
     <script src="js/auth.js"></script>
     <script src="js/admin.js"></script>
     <script>Auth.check('admin');</script>
