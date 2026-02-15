@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Connexion - Louis Editing</title>
+</head>
+<body class="flex-center">
+    <div class="card auth-card">
+        <h2>Accès <span>Privé</span></h2>
+        <input type="text" id="user" placeholder="Nom d'utilisateur">
+        <input type="password" id="pass" placeholder="Mot de passe">
+        <button onclick="Auth.login(document.getElementById('user').value, document.getElementById('pass').value)" class="btn-primary" style="width:100%">Entrer</button>
+        <p style="font-size:10px; margin-top:10px; color:#555">Admin: admin/louis123 | Client: client/guest</p>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>
