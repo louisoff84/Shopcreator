@@ -3,23 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Louis Editing | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>Louis Editing | Montage Vidéo & Presets</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body class="bg-gray-950 text-white font-sans overflow-x-hidden">
-    <div class="glow-bg"></div>
-    <nav class="p-6 flex justify-between items-center fixed w-full z-50 backdrop-blur-md border-b border-white/5">
-        <h1 class="text-2xl font-black italic tracking-tighter">LOUIS <span class="text-purple-600">EDITING</span></h1>
-        <div class="space-x-6 font-bold text-[10px] uppercase tracking-widest">
-            <a href="shop" class="hover:text-purple-500 transition">Services</a>
-            <a href="admin" class="bg-white/5 border border-white/10 px-4 py-2 rounded-full hover:bg-purple-600 transition">Admin</a>
-        </div>
+<body>
+    <nav class="navbar">
+        <div class="logo">Louis <span>Editing</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="pages/portfolio.html">Portfolio</a></li>
+            <li><a href="pages/tarifs.html">Tarifs</a></li>
+            <li><a href="login.html" class="btn-login">Dashboard</a></li>
+        </ul>
     </nav>
-    <header class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <div class="fade-in bg-purple-600/10 text-purple-500 border border-purple-500/20 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-8">Start Now 0€</div>
-        <h2 class="fade-in-1 text-6xl md:text-8xl font-black mb-6 italic uppercase">Sublime tes<br><span class="text-purple-600">vidéos.</span></h2>
-        <a href="shop" class="fade-in-3 btn-custom px-12 py-5 rounded-2xl font-black text-lg shadow-2xl shadow-purple-600/20">DÉCOUVRIR LE PORTFOLIO</a>
+
+    <header class="hero">
+        <div class="hero-content fade-in">
+            <h1>Édition Vidéo de <span class="highlight">Haute Qualité</span></h1>
+            <p>Je transforme vos tournages en pépites YouTube. Boostez votre rétention dès maintenant.</p>
+            <div class="cta-group">
+                <a href="pages/portfolio.html" class="btn-primary">Voir mon travail</a>
+                <a href="pages/contact.html" class="btn-secondary">Me contacter</a>
+            </div>
+        </div>
     </header>
+
+    <section class="features">
+        <div class="feat-card">
+            <h3>Montage Dynamique</h3>
+            <p>Spécialisé YouTube, Gaming et Vlog.</p>
+        </div>
+        <div class="feat-card">
+            <h3>Presets Pro</h3>
+            <p>Accédez à mes fichiers Premiere Pro exclusifs.</p>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
