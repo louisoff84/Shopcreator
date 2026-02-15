@@ -2,27 +2,13 @@
 <html lang="fr">
 <head>
     <link rel="stylesheet" href="css/main.css">
-    <title>Téléchargement | Louis Editing</title>
+    <title>Téléchargement</title>
 </head>
-<body>
-    <div style="text-align:center; margin-top:100px;">
-        <h1 id="title">Vérification...</h1>
-        <a id="btn" class="btn-primary" style="display:none; text-decoration:none;">Télécharger le fichier</a>
+<body class="flex-center">
+    <div class="card" style="text-align:center">
+        <h2 id="title">Vérification...</h2>
+        <a id="btn" class="btn-primary" style="display:none; text-decoration:none">Lancer le téléchargement</a>
     </div>
-
-    <script>
-        const t = new URLSearchParams(window.location.search).get('t');
-        if(t) {
-            try {
-                const data = JSON.parse(atob(t));
-                document.getElementById('title').innerText = "Votre Pack : " + data.n;
-                const b = document.getElementById('btn');
-                b.href = data.u;
-                b.style.display = "inline-block";
-            } catch(e) {
-                document.getElementById('title').innerText = "Lien corrompu ❌";
-            }
-        }
-    </script>
+    <script src="js/download.js"></script>
 </body>
 </html>
