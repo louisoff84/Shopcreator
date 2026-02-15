@@ -1,42 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Espace Client | Louis Editing</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Mon Dashboard</title>
 </head>
-<body class="bg-gray-950 text-white">
-    <div class="flex h-screen overflow-hidden">
-        <aside class="w-72 bg-black border-r border-gray-900 p-8 flex flex-col">
-            <h2 class="font-black text-2xl mb-12 tracking-tighter italic">LOUIS <span class="text-purple-600">E.</span></h2>
-            <nav class="space-y-3 flex-1">
-                <a href="shop" class="flex items-center gap-3 p-4 rounded-xl hover:bg-gray-900 transition"><span>🛒</span> Boutique</a>
-                <a href="dashboard" class="flex items-center gap-3 p-4 rounded-xl bg-purple-600/10 text-purple-500 font-bold border border-purple-500/20"><span>📋</span> Mes Projets</a>
-            </nav> 
-            <div class="text-[10px] text-gray-600 font-bold uppercase tracking-widest text-center mt-auto">Support: Louis Editing v1.0</div>
-        </aside>
-
-        <main class="flex-1 p-12 overflow-y-auto bg-gray-950">
-            <div class="flex justify-between items-center mb-10">
-                <h1 class="text-3xl font-black italic uppercase">Mes Commandes</h1>
-                <div id="notif-badge" class="hidden bg-purple-600 text-[10px] px-3 py-1 rounded-full animate-pulse">NOUVELLE ACTIVITÉ</div>
-            </div>
-            
-            <div class="bg-gray-900 rounded-3xl border border-gray-800 overflow-hidden shadow-2xl">
-                <table class="w-full text-left">
-                    <thead class="bg-gray-800/50 text-gray-500 text-[10px] font-black uppercase tracking-widest">
-                        <tr>
-                            <th class="p-6">Type de Montage</th>
-                            <th class="p-6">Statut de Production</th>
-                            <th class="p-6">Date de commande</th>
-                        </tr>
-                    </thead>
-                    <tbody id="orders-list">
-                        </tbody>
-                </table>
-            </div>
-        </main>
+<body>
+    <div style="padding:50px 10%">
+        <h1>Espace <span>Client</span></h1>
+        <div id="content" class="card">
+            <h3>Aucun produit trouvé</h3>
+            <p>Achetez un pack dans la boutique pour le voir ici.</p>
+        </div>
+        <button onclick="Auth.logout()" class="btn-secondary" style="margin-top:20px">Déconnexion</button>
     </div>
-    <script src="script.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        Auth.check('client');
+        if(new URLSearchParams(window.location.search).get('order') === 'success') {
+            document.getElementById('content').innerHTML = "<h3>✅ Votre pack est prêt !</h3><p>Pack Master V1 - <a href='download.html?t=eyJuIjoiUGFjayBNYXN0ZXIiLCJ1IjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tIn0=' style='color:var(--p)'>Télécharger</a></p>";
+        }
+    </script>
 </body>
 </html>
